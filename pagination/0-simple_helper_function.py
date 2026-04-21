@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module providing a helper function for pagination index range calculation."""
+"""Module providing a helper function for pagination index range."""
 
 
 def index_range(page: int, page_size: int) -> tuple:
