@@ -1,6 +1,8 @@
-export default function getNeighborhood(friends) {
-  this.sanFrancisco = 'San Francisco';
-  this.losAngeles = 'Los Angeles';
+export default function getNeighborhoodsList() {
+  this.sanFranciscoNeighborhoods = ['SOMA', 'Union Square'];
 
-  return friends.map((friend) => `${friend} is in ${this.sanFrancisco}`);
+  this.addNeighborhood = (newNeighborhood) => {
+    this.sanFranciscoNeighborhoods.push(newNeighborhood);
+    return this.sanFranciscoNeighborhoods;
+  };
 }
