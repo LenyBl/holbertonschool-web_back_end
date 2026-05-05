@@ -1,6 +1,5 @@
-export default function createInt8TypedArray(arr) {
-	if (!Array.isArray(arr)) {
-		return new Int8Array();
-	}
-	return new Int8Array(arr);
+export default function createInt8TypedArray(length, position, value) {
+	const arr = new Int8Array(length);
+	arr[position] = value;
+	return arr;
 }
