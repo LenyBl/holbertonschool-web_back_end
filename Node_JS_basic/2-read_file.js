@@ -1,0 +1,22 @@
+const fs = require('fs');
+
+module.exports = function countStudents(path) {
+	try {
+		const data = fs.readFileSync(path, 'utf-8');
+		const lines = data.split('\n').filter(line => line.trim() !== '');
+		const students = {};
+		lines.slice(1).forEach(line => {
+			const [firstName, lastName, age, field] = line.split(',');
+			if (!students[field]) {
+				students[field] = [];
+			}
+			students[field].push(`${firstName} ${lastName}`);
+		});
+		console.log(`Number of students: ${lines.length - 1}`);
+		for (const field in students) {
+			console.log(`Number of students in ${field}: ${students[field].length}. List: ${students[field].join(', ')}`);
+		}
+	} catch (err) {
+		throw new Error('Cannot load the database');
+	}
+}
