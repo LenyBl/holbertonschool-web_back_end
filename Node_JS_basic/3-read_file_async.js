@@ -12,10 +12,12 @@ module.exports = async function countStudents(filePath) {
       }
       students[field].push(firstName);
     });
-    console.log(`Number of students: ${lines.length - 1}`);
+    const outputLines = [`Number of students: ${lines.length - 1}`];
     Object.keys(students).forEach((field) => {
-      console.log(`Number of students in ${field}: ${students[field].length}. List: ${students[field].join(', ')}`);
+      outputLines.push(`Number of students in ${field}: ${students[field].length}. List: ${students[field].join(', ')}`);
     });
+    outputLines.forEach((line) => console.log(line));
+    return outputLines.join('\n');
   } catch (_) {
     throw new Error('Cannot load the database');
   }
