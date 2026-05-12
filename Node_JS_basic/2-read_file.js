@@ -6,11 +6,11 @@ module.exports = function countStudents(path) {
 		const lines = data.split('\n').filter(line => line.trim() !== '');
 		const students = {};
 		lines.slice(1).forEach(line => {
-			const [firstName, lastName, age, field] = line.split(',');
+			const [firstName, , , field] = line.split(',');
 			if (!students[field]) {
 				students[field] = [];
 			}
-			students[field].push(`${firstName} ${lastName}`);
+			students[field].push(firstName);
 		});
 		console.log(`Number of students: ${lines.length - 1}`);
 		for (const field in students) {
