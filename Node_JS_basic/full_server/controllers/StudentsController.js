@@ -1,10 +1,8 @@
 import readDatabase from '../utils.js';
 
-const DB_PATH = process.argv[2];
-
 class StudentsController {
   static getAllStudents(_req, res) {
-    readDatabase(DB_PATH)
+    readDatabase(process.argv[2])
       .then((students) => {
         const fields = Object.keys(students).sort((a, b) =>
           a.toLowerCase().localeCompare(b.toLowerCase())
@@ -28,7 +26,7 @@ class StudentsController {
       res.status(500).send('Major parameter must be CS or SWE');
       return;
     }
-    readDatabase(DB_PATH)
+    readDatabase(process.argv[2])
       .then((students) => {
         const list = students[major] || [];
         res.status(200).send(`List: ${list.join(', ')}`);
