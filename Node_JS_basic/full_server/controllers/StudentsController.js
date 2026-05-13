@@ -1,17 +1,17 @@
-import readDatabase from '../utils.js';
+import readDatabase from '../utils';
 
 class StudentsController {
   static getAllStudents(_req, res) {
     readDatabase(process.argv[2])
       .then((students) => {
-        const fields = Object.keys(students).sort((a, b) =>
-          a.toLowerCase().localeCompare(b.toLowerCase())
-        );
+        const fields = Object.keys(students).sort((a, b) => {
+          const la = a.toLowerCase();
+          const lb = b.toLowerCase();
+          return la.localeCompare(lb);
+        });
         const lines = ['This is the list of our students'];
         for (const field of fields) {
-          lines.push(
-            `Number of students in ${field}: ${students[field].length}. List: ${students[field].join(', ')}`
-          );
+          lines.push(`Number of students in ${field}: ${students[field].length}. List: ${students[field].join(', ')}`);
         }
         res.status(200).send(lines.join('\n'));
       })
